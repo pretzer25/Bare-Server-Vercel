@@ -1,25 +1,18 @@
 {
-  "name": "nodejs-sandbox",
-  "version": "1.0.0",
+  "name": "education",
+  "version": "4.2.2",
   "description": "",
-  "main": "index.html",
+  "type": "module",
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/codesandbox-app/static-template.git"
-  },
   "keywords": [],
-  "author": "Ives van Hoorne",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/codesandbox-app/static-template/issues"
-  },
-  "homepage": "https://github.com/codesandbox-app/static-template#readme",
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  },
+  "author": "",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "@tomphttp/bare-server-node": "^2.0.1",
     "express": "^4.18.2"
