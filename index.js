@@ -1,13 +1,21 @@
-const http = require("node:http");
-const { createBareServer } = require("@tomphttp/bare-server-node");
-const fs = require("fs");
-const path = require("path");
+import express from "express";
+import http from "node:http";
+import path from "node:path";
+import { createBareServer } from "@tomphttp/bare-server-node";
 
-// Create an HTTP server
-const httpServer = http.createServer();
+const __dirname = process.cwd();
+const server = http.createServer();
+const app = express(server);
 const bareServer = createBareServer("/");
 
-httpServer.on("request", (req, res) => {
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+server.on("request", (req, res) => {
   if (bareServer.shouldRoute(req)) {
     bareServer.routeRequest(req, res);
   } else {
@@ -15,7 +23,7 @@ httpServer.on("request", (req, res) => {
   }
 });
 
-httpServer.on("upgrade", (req, socket, head) => {
+server.on("upgrade", (req, socket, head) => {
   if (bareServer.shouldRoute(req)) {
     bareServer.routeUpgrade(req, socket, head);
   } else {
@@ -23,10 +31,10 @@ httpServer.on("upgrade", (req, socket, head) => {
   }
 });
 
-httpServer.on("listening", () => {
-  console.log("HTTP server listening");
+server.on("listening", () => {
+  console.log(`Doge Unblocker running at port 8000`);
 });
 
-httpServer.listen({
+server.listen({
   port: 8000,
 });
